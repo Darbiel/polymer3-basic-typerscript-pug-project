@@ -1,8 +1,6 @@
 .App {
-  background: $neutral-lower;
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  max-width: none;
-  font-family: "fantasy";
+  &__header {
+    background: #0000FF;
+    font-family: "fantasy";
+  }
 }

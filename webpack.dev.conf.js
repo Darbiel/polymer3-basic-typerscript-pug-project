@@ -41,41 +41,46 @@ module.exports = {
               {loader: 'raw-loader'},
               {loader: 'pug-html-loader', options: {data: {}}}
           ]
+      },
+      {
+          test:/\.(sa|sc|c)ss$/,
+          use:['style-loader', 'css-loader']
+          // use:['style-loader', 'sass-loader', 'css-loader']
       }
     ]
   },
   resolve: {
-    extensions: ['.ts', '.js','.pug']
+    extensions: ['.ts', '.js','.pug','.css','.scss']
   },
   plugins: [
-  new CleanWebpackPlugin(['dist'], { verbose: true, root: path.resolve(__dirname) }),
-  new HtmlWebpackPlugin({
-    filetype: 'pug',
-    template: 'index.pug',
-    inject: "head"
-    }),
-  new HtmlWebpackPlugin({
-      filetype: 'html',
-      template: 'index.pug',
-      inject: "head"
-  }),
-    new HtmlWebpackPugPlugin(),
-    new CopyWebpackPlugin([
-      {
-        from: path.resolve(__dirname, './static'),
-        to: 'static',
-        ignore: ['.*']
-      },
-      {
-        from: path.join(
-          path.resolve(__dirname, './node_modules/@webcomponents/webcomponentsjs/'),
-          '*.js'
-        ),
-        to: './webcomponentjs',
-        flatten: true
-      }
-    ]),
-    new webpack.IgnorePlugin(/vertx/),
-    new webpack.HotModuleReplacementPlugin(),
+      new CleanWebpackPlugin(['dist'], { verbose: true, root: path.resolve(__dirname) }),
+      new HtmlWebpackPlugin({
+        filetype: 'pug',
+        template: 'index.pug',
+        inject: "head"
+        }),
+      new HtmlWebpackPlugin({
+          filetype: 'html',
+          template: 'index.pug',
+          inject: "head"
+      }),
+        new HtmlWebpackPugPlugin(),
+        new CopyWebpackPlugin([
+          {
+            from: path.resolve(__dirname, './static'),
+            to: 'static',
+            ignore: ['.*']
+          },
+          {
+            from: path.join(
+              path.resolve(__dirname, './node_modules/@webcomponents/webcomponentsjs/'),
+              '*.js'
+            ),
+            to: './webcomponentjs',
+            flatten: true
+          }
+        ]),
+        new webpack.IgnorePlugin(/vertx/),
+        new webpack.HotModuleReplacementPlugin(),
   ]
 };

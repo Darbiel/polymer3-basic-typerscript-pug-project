@@ -11,7 +11,7 @@ export class BasicPolymerElement extends PolymerElement {
     }
 
     static get template() {
-        const stringArray = [`<style>${css.toString()}</style> ${view}`];
+        const stringArray = [`<style>${css.toString()}</style>${view}`] as any;
         return html({raw: stringArray, ...stringArray} as TemplateStringsArray);
     }
 
